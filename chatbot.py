@@ -3,12 +3,13 @@ import time
 
 class WhatsappBot:
     def __init__(self):
+        # enviar mensagem
         self.mensagem = " boa noite, essa é uma mensagem de teste "
-        # Altere o nome dos grupos aqui
+        # nome do grupo 
         self.grupos = ["ESTAGIÁRIO"]
-        # Parte 1 - A mensagem que você quer enviar
+        # Parte 1 - mensagem que vai ser enviada 
         self.mensagem = "Hey, eu tenho novidades!"
-        # Parte 2 - Nome dos grupos ou pessoas a quem você deseja enviar a mensagem
+        # Parte 2 - grupo que a mensagem vai ser enviada 
         self.grupos_ou_pessoas = ["ESTAGIÁRIO"]
         options = webdriver.ChromeOptions()
         options.add_argument('lang=pt-br')
@@ -17,8 +18,10 @@ class WhatsappBot:
             executable_path=r'./chromedriver.exe', chrome_options=options)
     def EnviarMensagens(self):
         self.driver.get('https://web.whatsapp.com')
+        # tempo de 13 segundos para adicionar o codigo qr
         time.sleep(13)
         for grupo in self.grupos:
+            # xpath do codigo html da pagina do sigaa 
             grupo = self.driver.find_element_by_xpath(f"//span[@title='{grupo}']")
         for grupo_ou_pessoa in self.grupos_ou_pessoas:
             campo_grupo = self.driver.find_element_by_xpath(
@@ -38,6 +41,6 @@ class WhatsappBot:
             time.sleep(5)
 bot = WhatsappBot()
 bot.EnviarMensagens()
-# <span dir="auto" title="ESTAGIÁRIO" class="_ccCW FqYAR i0jNr">ESTAGIÁRIO</span>
+#<span dir="auto" title="ESTAGIÁRIO" class="_ccCW FqYAR i0jNr">ESTAGIÁRIO</span>
 
 
